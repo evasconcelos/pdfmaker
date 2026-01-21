@@ -36,19 +36,25 @@ function render(doc, data, cursor) {
   // Bullet items
   if (data.items && data.items.length > 0) {
     data.items.forEach((item) => {
-      // Bullet
-      doc
-        .fontSize(fonts.size.sm)
-        .fillColor(colors.muted)
-        .text('•', cursor.x, cursor.y);
+      doc.fontSize(fonts.size.sm);
+      const itemHeight = doc.heightOfString(item, { width: page.contentWidth - spacing.md });
 
-      // Item text
+      // Check if item fits on current page, if not add new page
+      if (cursor.y + itemHeight > page.height - page.margin) {
+        doc.addPage();
+        cursor.y = page.margin;
+      }
+
+      // Bullet and text on same line
       doc
-        .fontSize(fonts.size.sm)
+        .fillColor(colors.muted)
+        .text('•', cursor.x, cursor.y, { continued: false, lineBreak: false });
+
+      doc
         .fillColor(colors.secondary)
         .text(item, cursor.x + spacing.md, cursor.y, { width: page.contentWidth - spacing.md });
 
-      cursor.y += doc.heightOfString(item, { width: page.contentWidth - spacing.md }) + spacing.sm;
+      cursor.y += itemHeight + spacing.sm;
     });
   }
 

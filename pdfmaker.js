@@ -70,13 +70,18 @@ function generatePDF(inputPath) {
       const component = components[componentName];
 
       if (componentData && component) {
-        // Check if we need a new page
-        if (cursor.y > page.height - 150) {
-          doc.addPage();
-          cursor.y = page.margin;
-        }
+        // Support arrays for repeating components
+        const items = Array.isArray(componentData) ? componentData : [componentData];
 
-        cursor = component.render(doc, componentData, cursor);
+        for (const itemData of items) {
+          // Check if we need a new page
+          if (cursor.y > page.height - 150) {
+            doc.addPage();
+            cursor.y = page.margin;
+          }
+
+          cursor = component.render(doc, itemData, cursor);
+        }
       }
     }
   }
