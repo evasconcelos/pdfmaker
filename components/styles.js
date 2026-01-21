@@ -1,20 +1,22 @@
 // Shared styles and constants for PDF components
 
 const colors = {
-  primary: '#1a1a2e',
-  secondary: '#4a4a68',
+  // Based on accent (blue) palette
+  primary: '#0e2e67',    // --blue-12: darkest blue for headings
+  secondary: '#3c6989',  // --teal-11: secondary text
   muted: '#6b7280',
-  border: '#e5e7eb',
-  background: '#f9fafb',
+  border: '#c9e1ff',     // --blue-5
+  background: '#fcfdff', // --blue-1
   white: '#ffffff',
+  accent: '#005ff1',     // --blue-9: main accent
 
   // Variant colors
-  green: '#10b981',
-  greenLight: '#d1fae5',
-  blue: '#3b82f6',
-  blueLight: '#dbeafe',
-  purple: '#8b5cf6',
-  purpleLight: '#ede9fe',
+  green: '#00844a',      // --green-11
+  greenLight: '#d6fde5', // --green-3
+  blue: '#0d5de1',       // --blue-11
+  blueLight: '#eaf3ff',  // --blue-3
+  teal: '#3c6989',       // --teal-11
+  tealLight: '#e4f3fe',  // --teal-3
   orange: '#f59e0b',
   orangeLight: '#fef3c7',
   gray: '#6b7280',
@@ -53,11 +55,11 @@ function getVariantColors(variant) {
   const variants = {
     green: { bg: colors.greenLight, text: colors.green },
     blue: { bg: colors.blueLight, text: colors.blue },
-    purple: { bg: colors.purpleLight, text: colors.purple },
+    teal: { bg: colors.tealLight, text: colors.teal },
     orange: { bg: colors.orangeLight, text: colors.orange },
     gray: { bg: colors.grayLight, text: colors.gray },
   };
-  return variants[variant] || variants.gray;
+  return variants[variant] || variants.blue;
 }
 
 module.exports = {

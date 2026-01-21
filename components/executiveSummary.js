@@ -12,7 +12,7 @@ function render(doc, data, cursor) {
   if (data.badge) {
     const titleWidth = doc.widthOfString(data.title);
     const badgeX = cursor.x + titleWidth + spacing.md;
-    const variant = getVariantColors('purple');
+    const variant = getVariantColors('blue');
 
     // Calculate badge dimensions with correct font size
     doc.fontSize(fonts.size.xs);
