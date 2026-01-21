@@ -35,8 +35,8 @@ function render(doc, data, cursor) {
   const categories = data.categories || [];
   const total = categories.reduce((sum, cat) => sum + cat.value, 0);
 
-  // Donut chart dimensions
-  const centerX = cursor.x + chartWidth / 2;
+  // Donut chart dimensions - centered on page
+  const centerX = cursor.x + page.contentWidth / 2;
   const centerY = cursor.y + 80;
   const outerRadius = 70;
   const innerRadius = 45;
@@ -72,13 +72,13 @@ function render(doc, data, cursor) {
     startAngle = endAngle;
   });
 
-  // Legend below the chart
+  // Legend below the chart (3 columns)
   let legendY = cursor.y + 170;
-  const legendColWidth = chartWidth / 2;
+  const legendColWidth = chartWidth / 3;
   let legendCol = 0;
   let legendRow = 0;
 
-  categories.forEach((category, index) => {
+  categories.forEach((category) => {
     const color = categoryColors[category.label] || colors.gray;
     const legendX = cursor.x + (legendCol * legendColWidth);
     const rowY = legendY + legendRow * (fonts.size.sm + spacing.sm);
@@ -95,15 +95,12 @@ function render(doc, data, cursor) {
       .text(category.label, legendX + 14, rowY + 1);
 
     legendCol++;
-    if (legendCol >= 2) {
+    if (legendCol >= 3) {
       legendCol = 0;
       legendRow++;
     }
   });
 
-  // Store position for side-by-side layout
-  cursor.riskDistributionRight = cursor.x + chartWidth;
-  cursor.riskDistributionY = cursor.y;
   cursor.y += chartHeight + spacing.xl;
 
   return cursor;
