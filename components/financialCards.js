@@ -1,4 +1,4 @@
-const { colors, fonts, spacing, page, getVariantColors } = require('./styles');
+const { colors, fonts, spacing, page, getVariantColors, formatMoney } = require('./styles');
 
 function render(doc, data, cursor) {
   const cards = data.cards || data;
@@ -21,7 +21,7 @@ function render(doc, data, cursor) {
     doc
       .fontSize(fonts.size['xl'])
       .fillColor(variant.text)
-      .text(card.amount, cardX + spacing.md, cursor.y + spacing.md);
+      .text(formatMoney(card.amount), cardX + spacing.md, cursor.y + spacing.md);
 
     // Label
     doc

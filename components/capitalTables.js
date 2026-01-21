@@ -1,4 +1,4 @@
-const { colors, fonts, spacing, page } = require('./styles');
+const { colors, fonts, spacing, page, formatMoney } = require('./styles');
 
 function estimateTableHeight(tableData) {
   const titleHeight = fonts.size.lg + spacing.md;
@@ -42,7 +42,7 @@ function renderTable(doc, tableData, x, y, width) {
       doc
         .fontSize(fonts.size.sm)
         .fillColor(colors.primary)
-        .text(item.amount, amountX, y, { width: 80, align: 'right' });
+        .text(formatMoney(item.amount), amountX, y, { width: 80, align: 'right' });
 
       y += rowHeight;
     });
@@ -68,7 +68,7 @@ function renderTable(doc, tableData, x, y, width) {
     doc
       .fontSize(fonts.size.base)
       .fillColor(colors.primary)
-      .text(tableData.total.amount, x + width - 80, y, { width: 80, align: 'right' });
+      .text(formatMoney(tableData.total.amount), x + width - 80, y, { width: 80, align: 'right' });
 
     y += fonts.size.base + spacing.md;
   }

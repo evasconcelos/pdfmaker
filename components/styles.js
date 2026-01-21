@@ -62,10 +62,75 @@ function getVariantColors(variant) {
   return variants[variant] || variants.blue;
 }
 
+// Format money values: "$1234567.891" -> "$1,234,567.89"
+function formatMoney(value) {
+  if (value === null || value === undefined) return '';
+
+  const str = String(value);
+
+  // Check if it's a money value (starts with $ or is a number)
+  const moneyMatch = str.match(/^\$?([\d,]+\.?\d*)(.*)$/);
+  if (!moneyMatch) return str;
+
+  let [, numPart, suffix] = moneyMatch;
+
+  // Remove existing commas and parse
+  numPart = numPart.replace(/,/g, '');
+  const num = parseFloat(numPart);
+
+  if (isNaN(num)) return str;
+
+  // Format with commas, max 2 decimal places
+  const formatted = num.toLocaleString('en-US', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  });
+
+  // Add $ prefix if original had it or looks like money
+  const hasPrefix = str.startsWith('$');
+  return (hasPrefix ? '$' : '') + formatted + (suffix || '');
+}
+
+// Format number values: "1234567" -> "1,234,567"
+function formatNumber(value) {
+  if (value === null || value === undefined) return '';
+
+  const str = String(value);
+  const num = parseFloat(str.replace(/,/g, ''));
+
+  if (isNaN(num)) return str;
+
+  return num.toLocaleString('en-US', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  });
+}
+
+// Format percentage: "0.75" -> "75%" or pass through "75%"
+function formatPercent(value) {
+  if (value === null || value === undefined) return '';
+
+  const str = String(value);
+  if (str.includes('%')) return str;
+
+  const num = parseFloat(str);
+  if (isNaN(num)) return str;
+
+  // If it's a decimal, convert to percentage
+  if (num > 0 && num < 1) {
+    return (num * 100).toFixed(1).replace(/\.0$/, '') + '%';
+  }
+
+  return num.toFixed(1).replace(/\.0$/, '') + '%';
+}
+
 module.exports = {
   colors,
   fonts,
   spacing,
   page,
   getVariantColors,
+  formatMoney,
+  formatNumber,
+  formatPercent,
 };

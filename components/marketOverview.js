@@ -1,4 +1,15 @@
-const { colors, fonts, spacing, page, getVariantColors } = require('./styles');
+const { colors, fonts, spacing, page, getVariantColors, formatMoney, formatNumber } = require('./styles');
+
+// Auto-format value based on content
+function formatValue(value) {
+  const str = String(value);
+  if (str.startsWith('$')) return formatMoney(str);
+  if (str.includes('%')) return str; // percentages pass through
+  // Check if it's a large number that needs formatting
+  const num = parseFloat(str.replace(/,/g, ''));
+  if (!isNaN(num) && num >= 1000) return formatNumber(str);
+  return str;
+}
 
 function render(doc, data, cursor) {
   // Title
@@ -38,7 +49,7 @@ function render(doc, data, cursor) {
       doc
         .fontSize(fonts.size.lg)
         .fillColor(variant.text)
-        .text(metric.value, cardX + spacing.md, cursor.y + spacing.md);
+        .text(formatValue(metric.value), cardX + spacing.md, cursor.y + spacing.md);
 
       // Label
       doc

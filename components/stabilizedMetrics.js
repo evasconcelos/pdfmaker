@@ -1,4 +1,11 @@
-const { colors, fonts, spacing, page } = require('./styles');
+const { colors, fonts, spacing, page, formatMoney } = require('./styles');
+
+// Auto-format value based on content
+function formatValue(value) {
+  const str = String(value);
+  if (str.startsWith('$')) return formatMoney(str);
+  return str; // percentages and multipliers pass through
+}
 
 function render(doc, data, cursor) {
   // Section title
@@ -28,7 +35,7 @@ function render(doc, data, cursor) {
     doc
       .fontSize(fonts.size.lg)
       .fillColor(colors.primary)
-      .text(metric.value, metricX + spacing.md, cursor.y + spacing.md);
+      .text(formatValue(metric.value), metricX + spacing.md, cursor.y + spacing.md);
 
     // Label
     doc
