@@ -7,25 +7,30 @@ function render(doc, data, cursor) {
   doc
     .fontSize(fonts.size.lg)
     .fillColor(colors.primary)
-    .text(data.title, cursor.x, cursor.y, { continued: data.badge ? true : false });
+    .text(data.title, cursor.x, cursor.y, { lineBreak: false });
 
   if (data.badge) {
     const titleWidth = doc.widthOfString(data.title);
     const badgeX = cursor.x + titleWidth + spacing.md;
-    const badgeWidth = doc.widthOfString(data.badge) + spacing.md;
-    const badgeHeight = fonts.size.xs + spacing.sm;
     const variant = getVariantColors('purple');
+
+    // Calculate badge dimensions with correct font size
+    doc.fontSize(fonts.size.xs);
+    const textWidth = doc.widthOfString(data.badge);
+    const badgeWidth = textWidth + spacing.md;
+    const badgeHeight = fonts.size.xs + spacing.sm;
 
     // Badge background
     doc
       .roundedRect(badgeX, cursor.y, badgeWidth, badgeHeight, 3)
       .fill(variant.bg);
 
-    // Badge text
+    // Badge text (centered)
+    const textX = badgeX + (badgeWidth - textWidth) / 2;
+    const textY = cursor.y + (badgeHeight - fonts.size.xs) / 2;
     doc
-      .fontSize(fonts.size.xs)
       .fillColor(variant.text)
-      .text(data.badge, badgeX + spacing.xs, cursor.y + 2);
+      .text(data.badge, textX, textY);
   }
 
   cursor.y += fonts.size.lg + spacing.md;
