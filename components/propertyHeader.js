@@ -6,23 +6,30 @@ function render(doc, data, cursor) {
     let tagX = cursor.x;
     data.tags.forEach((tag) => {
       const variant = getVariantColors(tag.variant || 'gray');
-      const tagWidth = doc.widthOfString(tag.label) + spacing.md * 2;
-      const tagHeight = fonts.size.sm + spacing.sm;
 
-      // Tag background
+      // Set font size BEFORE calculating width for accurate measurement
+      doc.fontSize(fonts.size.sm);
+      const horizontalPadding = spacing.sm;
+      const verticalPadding = spacing.xs;
+      const tagWidth = doc.widthOfString(tag.label) + horizontalPadding * 2;
+      const tagHeight = fonts.size.sm + verticalPadding * 2;
+
+      // Tag background - pill shape with larger border radius
       doc
-        .roundedRect(tagX, cursor.y, tagWidth, tagHeight, 3)
+        .roundedRect(tagX, cursor.y, tagWidth, tagHeight, tagHeight / 2)
         .fill(variant.bg);
 
-      // Tag text
+      // Tag text - centered vertically
       doc
         .fontSize(fonts.size.sm)
         .fillColor(variant.text)
-        .text(tag.label, tagX + spacing.md, cursor.y + spacing.xs / 2);
+        .text(tag.label, tagX + horizontalPadding, cursor.y + verticalPadding, {
+          lineBreak: false
+        });
 
       tagX += tagWidth + spacing.sm;
     });
-    cursor.y += fonts.size.sm + spacing.sm + spacing.md;
+    cursor.y += fonts.size.sm + spacing.xs * 2 + spacing.md;
   }
 
   // Title
