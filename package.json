@@ -4,6 +4,8 @@
   "description": "A tool for generating print-friendly PDF documents from structured JSON component definitions.",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
+    "pdf": "node pdfmaker.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +20,9 @@
   },
   "homepage": "https://github.com/evasconcelos/pdfmaker#readme",
   "dependencies": {
-    "pdfkit": "^0.17.2"
+    "express": "^4.18.2",
+    "openai": "^4.0.0",
+    "pdfkit": "^0.17.2",
+    "uuid": "^9.0.0"
   }
 }
