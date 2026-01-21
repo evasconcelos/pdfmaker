@@ -59,17 +59,12 @@ function generatePDF(inputPath) {
   };
 
   // Render each component in array order
+  // Components handle their own page breaks based on their actual content height
   if (data.components && Array.isArray(data.components)) {
     for (const componentData of data.components) {
       const component = components[componentData.type];
 
       if (component) {
-        // Check if we need a new page
-        if (cursor.y > page.height - 150) {
-          doc.addPage();
-          cursor.y = page.margin;
-        }
-
         cursor = component.render(doc, componentData, cursor);
       }
     }

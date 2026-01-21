@@ -1,5 +1,14 @@
 const { colors, fonts, spacing, page } = require('./styles');
 
+function estimateTableHeight(tableData) {
+  const titleHeight = fonts.size.lg + spacing.md;
+  const rowHeight = fonts.size.base + spacing.md;
+  const itemsHeight = tableData.items ? tableData.items.length * rowHeight : 0;
+  const dividerHeight = spacing.xs + spacing.sm;
+  const totalRowHeight = tableData.total ? fonts.size.base + spacing.md : 0;
+  return titleHeight + itemsHeight + dividerHeight + totalRowHeight + spacing.md;
+}
+
 function renderTable(doc, tableData, x, y, width) {
   const startY = y;
   const rowHeight = fonts.size.base + spacing.md;
@@ -69,6 +78,18 @@ function renderTable(doc, tableData, x, y, width) {
 
 function render(doc, data, cursor) {
   const tableWidth = (page.contentWidth - spacing.xl) / 2;
+
+  // Calculate the maximum height needed for both tables
+  const leftTableHeight = data.sourcesOfCapital ? estimateTableHeight(data.sourcesOfCapital) : 0;
+  const rightTableHeight = data.usesOfCapital ? estimateTableHeight(data.usesOfCapital) : 0;
+  const maxTableHeight = Math.max(leftTableHeight, rightTableHeight);
+
+  // Check if tables fit on current page, if not add page break
+  if (cursor.y + maxTableHeight > page.height - page.margin) {
+    doc.addPage();
+    cursor.y = page.margin;
+  }
+
   let maxY = cursor.y;
 
   // Sources of Capital (left)

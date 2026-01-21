@@ -1,6 +1,20 @@
 const { colors, fonts, spacing, page, getVariantColors } = require('./styles');
 
 function render(doc, data, cursor) {
+  // Calculate total height needed for this component
+  const titleHeight = data.title ? fonts.size.lg + spacing.md : 0;
+  const legendHeight = data.legend ? fonts.size.xs + spacing.lg : 0;
+  const barHeight = 20;
+  const itemHeight = fonts.size.sm + spacing.sm + barHeight + spacing.xs + barHeight + spacing.md;
+  const dataItemsHeight = data.data ? data.data.length * itemHeight : 0;
+  const totalHeight = titleHeight + legendHeight + dataItemsHeight + spacing.lg;
+
+  // Check if component fits on current page, if not add page break
+  if (cursor.y + totalHeight > page.height - page.margin) {
+    doc.addPage();
+    cursor.y = page.margin;
+  }
+
   // Title
   if (data.title) {
     doc

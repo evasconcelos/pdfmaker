@@ -3,6 +3,18 @@ const { colors, fonts, spacing, page, getVariantColors } = require('./styles');
 function render(doc, data, cursor) {
   const startX = cursor.x;
 
+  // Calculate total height needed for this component
+  doc.fontSize(fonts.size.base);
+  const contentHeight = data.content ? doc.heightOfString(data.content, { width: page.contentWidth }) : 0;
+  const titleHeight = fonts.size.lg + spacing.md;
+  const totalHeight = titleHeight + contentHeight + spacing.lg + spacing.md;
+
+  // Check if component fits on current page, if not add page break
+  if (cursor.y + totalHeight > page.height - page.margin) {
+    doc.addPage();
+    cursor.y = page.margin;
+  }
+
   // Title and badge on same line
   doc
     .fontSize(fonts.size.lg)
