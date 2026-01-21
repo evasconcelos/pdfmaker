@@ -27,7 +27,15 @@ function generatePDF(inputPath) {
   }
 
   // Generate output path (same name, .pdf extension)
-  const outputPath = resolvedInput.replace(/\.json$/i, '.pdf');
+  // If file exists, append a number to create unique filename
+  const basePath = resolvedInput.replace(/\.json$/i, '');
+  let outputPath = `${basePath}.pdf`;
+  let counter = 1;
+
+  while (fs.existsSync(outputPath)) {
+    outputPath = `${basePath}-${counter}.pdf`;
+    counter++;
+  }
 
   // Create PDF document
   const doc = new PDFDocument({
