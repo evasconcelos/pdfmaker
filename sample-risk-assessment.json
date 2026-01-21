@@ -1,0 +1,62 @@
+{
+  "page": "RiskAssessment",
+  "tab": "Overview",
+  "components": [
+    {
+      "type": "riskScoreCard",
+      "score": 25,
+      "baseScore": 26,
+      "adjustments": 8,
+      "assessmentDate": "26/08/2025",
+      "riskLevel": { "label": "Very High Risk", "variant": "red" }
+    },
+    {
+      "type": "executiveSummary",
+      "title": "Executive Summary",
+      "badge": "AI-Powered",
+      "content": "This project presents favorable risk characteristics with a very high risk profile. The Brand & Flag category particularly strengthens the assessment. Minor attention to underwriting (dscr) could optimize the already strong foundation. Strong fundamentals position this deal favorably for approval with minimal risk mitigation required.",
+      "note": "Static analysis based on 11 evaluated risk factors"
+    },
+    {
+      "type": "scoreCalculation",
+      "title": "Score Calculation Details",
+      "cards": [
+        { "label": "Base Score", "value": 76, "sublabel": "Weighted average of all risk factors" },
+        { "label": "Adjustments", "value": 13, "prefix": "+", "sublabel": "Risk-specific adjustments applied" },
+        { "label": "Final Score", "value": 89, "sublabel": "Base score + adjustments" }
+      ]
+    },
+    {
+      "type": "scoreAdjustments",
+      "items": [
+        { "label": "NOI Guaranty", "value": 10, "variant": "blue" },
+        { "label": "Loan Guaranty", "value": 10, "variant": "blue" },
+        { "label": "DSCR > 2.00", "value": 6, "variant": "blue" },
+        { "label": "GC National or >20 Hotels Built or Avg Project >$50MM", "value": 4, "variant": "blue" }
+      ]
+    },
+    {
+      "type": "riskDistribution",
+      "title": "Risk Distribution by Category",
+      "categories": [
+        { "label": "Brand & Flag", "value": 30 },
+        { "label": "Financial", "value": 20 },
+        { "label": "Borrower Profile", "value": 18 },
+        { "label": "Location & Market", "value": 17 },
+        { "label": "Construction", "value": 15 }
+      ]
+    },
+    {
+      "type": "categoryScores",
+      "title": "Average Score per Question",
+      "categories": [
+        { "label": "Brand & Flag", "questions": 3, "score": 10.0, "maxScore": 30 },
+        { "label": "Financial", "questions": 3, "score": 1.0, "maxScore": 10 },
+        { "label": "Borrower Profile", "questions": 3, "score": 0.8, "maxScore": 10 },
+        { "label": "Location & Market", "questions": 3, "score": 1.0, "maxScore": 10 },
+        { "label": "Construction", "questions": 3, "score": 0.0, "maxScore": 10 }
+      ],
+      "note": "Progress bars show average question scores out of maximum 5 points"
+    }
+  ]
+}

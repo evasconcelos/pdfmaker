@@ -10,6 +10,13 @@ const capitalStructureNotes = require('./capitalStructureNotes');
 const marketOverview = require('./marketOverview');
 const competitivePositioning = require('./competitivePositioning');
 
+// Risk assessment components
+const riskScoreCard = require('./riskScoreCard');
+const scoreCalculation = require('./scoreCalculation');
+const scoreAdjustments = require('./scoreAdjustments');
+const riskDistribution = require('./riskDistribution');
+const categoryScores = require('./categoryScores');
+
 const components = {
   pageHeader,
   propertyHeader,
@@ -20,6 +27,12 @@ const components = {
   capitalStructureNotes,
   marketOverview,
   competitivePositioning,
+  // Risk assessment
+  riskScoreCard,
+  scoreCalculation,
+  scoreAdjustments,
+  riskDistribution,
+  categoryScores,
 };
 
 module.exports = components;

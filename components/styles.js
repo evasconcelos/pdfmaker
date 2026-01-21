@@ -19,6 +19,10 @@ const colors = {
   tealLight: '#e4f3fe',  // --teal-3
   orange: '#f59e0b',
   orangeLight: '#fef3c7',
+  red: '#dc2626',
+  redLight: '#fee2e2',
+  yellow: '#ca8a04',
+  yellowLight: '#fef9c3',
   gray: '#6b7280',
   grayLight: '#f3f4f6',
 };
@@ -57,6 +61,8 @@ function getVariantColors(variant) {
     blue: { bg: colors.blueLight, text: colors.blue },
     teal: { bg: colors.tealLight, text: colors.teal },
     orange: { bg: colors.orangeLight, text: colors.orange },
+    red: { bg: colors.redLight, text: colors.red },
+    yellow: { bg: colors.yellowLight, text: colors.yellow },
     gray: { bg: colors.grayLight, text: colors.gray },
   };
   return variants[variant] || variants.blue;
