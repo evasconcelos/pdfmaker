@@ -1,160 +1,78 @@
 {
   "page": "CreditAnalysis",
   "tab": "DealOverview",
-  "components": {
-    "pageHeader": {
+  "components": [
+    {
+      "type": "pageHeader",
       "icon": "RiBarChartBoxLine",
       "title": "Credit Analysis",
       "actions": [
-        {
-          "icon": "RiShareLine",
-          "label": "Share"
-        },
-        {
-          "icon": "RiEditLine",
-          "label": "Edit"
-        },
-        {
-          "icon": "RiDownloadLine",
-          "label": "Download"
-        }
+        { "icon": "RiShareLine", "label": "Share" },
+        { "icon": "RiEditLine", "label": "Edit" },
+        { "icon": "RiDownloadLine", "label": "Download" }
       ]
     },
-    "propertyHeader": {
+    {
+      "type": "propertyHeader",
       "tags": [
-        {
-          "label": "Construction",
-          "variant": "blue"
-        },
-        {
-          "label": "111 Keys",
-          "icon": "RiKey2Line",
-          "variant": "gray"
-        }
+        { "label": "Construction", "variant": "blue" },
+        { "label": "111 Keys", "icon": "RiKey2Line", "variant": "gray" }
       ],
       "title": "Home2 Suites",
-      "locationLink": {
-        "label": "Port St. Lucie, FL",
-        "href": "/locations/port-st-lucie-fl"
-      },
+      "locationLink": { "label": "Port St. Lucie, FL", "href": "/locations/port-st-lucie-fl" },
       "address": "1890 SW Fountainview Blvd, Port St. Lucie, FL 34986",
       "description": "Immediately off I-95; adjacent to Residence Inn & Hampton Inn; walkable to Carrabba's and fuel stations"
     },
-    "financialCards": [
-      {
-        "amount": "$17.6MM",
-        "label": "Total Uses",
-        "sublabel": "$158,337 per key",
-        "variant": "green"
-      },
-      {
-        "amount": "$15.5MM",
-        "label": "Senior Loan",
-        "sublabel": "$158,337 per key",
-        "variant": "blue",
-        "hasInfoIcon": true
-      }
-    ],
-    "stabilizedMetrics": {
-      "title": "Stabilized Metrics",
-      "metrics": [
-        {
-          "icon": "RiBuilding2Line",
-          "value": "16.4%",
-          "label": "Cap Rate",
-          "sublabel": "Projected"
-        },
-        {
-          "icon": "RiCalendarLine",
-          "value": "1.09x",
-          "label": "DSCR",
-          "sublabel": "Stabilized"
-        },
-        {
-          "icon": "RiLineChartLine",
-          "value": "12.5%",
-          "label": "Debt Yield",
-          "sublabel": "Stabilized"
-        },
-        {
-          "icon": "RiMoneyDollarBoxLine",
-          "value": "$105",
-          "label": "RevPAR",
-          "sublabel": "Stabilized"
-        }
+    {
+      "type": "financialCards",
+      "cards": [
+        { "amount": "$17.6MM", "label": "Total Uses", "sublabel": "$158,337 per key", "variant": "green" },
+        { "amount": "$15.5MM", "label": "Senior Loan", "sublabel": "$158,337 per key", "variant": "blue", "hasInfoIcon": true }
       ]
     },
-    "executiveSummary": {
+    {
+      "type": "stabilizedMetrics",
+      "title": "Stabilized Metrics",
+      "metrics": [
+        { "icon": "RiBuilding2Line", "value": "16.4%", "label": "Cap Rate", "sublabel": "Projected" },
+        { "icon": "RiCalendarLine", "value": "1.09x", "label": "DSCR", "sublabel": "Stabilized" },
+        { "icon": "RiLineChartLine", "value": "12.5%", "label": "Debt Yield", "sublabel": "Stabilized" },
+        { "icon": "RiMoneyDollarBoxLine", "value": "$105", "label": "RevPAR", "sublabel": "Stabilized" }
+      ]
+    },
+    {
+      "type": "executiveSummary",
       "title": "Executive Summary",
       "badge": "AI-Powered",
-      "content": "This project presents favorable risk characteristics with a very high risk profile. The Brand & Flag category particularly strengthens the assessment. Minor attention to underwriting (dscr) could optimize the already strong foundation. Strong fundamentals position this deal favorably for approval with minimal risk mitigation required."  
+      "content": "This project presents favorable risk characteristics with a very high risk profile. The Brand & Flag category particularly strengthens the assessment. Minor attention to underwriting (dscr) could optimize the already strong foundation. Strong fundamentals position this deal favorably for approval with minimal risk mitigation required."
     },
-    "capitalTables": {
+    {
+      "type": "capitalTables",
       "sourcesOfCapital": {
         "title": "Sources of Capital",
         "items": [
-          {
-            "label": "Hard Costs",
-            "amount": "$12.8MM"
-          },
-          {
-            "label": "Soft Costs",
-            "amount": "$12.8MM"
-          },
-          {
-            "label": "FF&E",
-            "amount": "$12.8MM"
-          },
-          {
-            "label": "Financing",
-            "amount": "$12.8MM"
-          },
-          {
-            "label": "Contingency",
-            "amount": "$12.8MM"
-          }
+          { "label": "Hard Costs", "amount": "$12.8MM" },
+          { "label": "Soft Costs", "amount": "$12.8MM" },
+          { "label": "FF&E", "amount": "$12.8MM" },
+          { "label": "Financing", "amount": "$12.8MM" },
+          { "label": "Contingency", "amount": "$12.8MM" }
         ],
-        "total": {
-          "label": "Total Uses",
-          "amount": "$12.8MM"
-        }
+        "total": { "label": "Total Uses", "amount": "$12.8MM" }
       },
       "usesOfCapital": {
         "title": "Uses of Capital",
         "items": [
-          {
-            "label": "Hard Costs",
-            "percentage": "68.9%",
-            "amount": "$12.8MM"
-          },
-          {
-            "label": "Soft Costs",
-            "percentage": "3.9%",
-            "amount": "$12.8MM"
-          },
-          {
-            "label": "FF&E",
-            "percentage": "7.5%",
-            "amount": "$12.8MM"
-          },
-          {
-            "label": "Financing",
-            "percentage": "5.0%",
-            "amount": "$12.8MM"
-          },
-          {
-            "label": "Contingency",
-            "percentage": "5.4%",
-            "amount": "$12.8MM"
-          }
+          { "label": "Hard Costs", "percentage": "68.9%", "amount": "$12.8MM" },
+          { "label": "Soft Costs", "percentage": "3.9%", "amount": "$12.8MM" },
+          { "label": "FF&E", "percentage": "7.5%", "amount": "$12.8MM" },
+          { "label": "Financing", "percentage": "5.0%", "amount": "$12.8MM" },
+          { "label": "Contingency", "percentage": "5.4%", "amount": "$12.8MM" }
         ],
-        "total": {
-          "label": "Total Uses",
-          "amount": "$12.8MM"
-        }
+        "total": { "label": "Total Uses", "amount": "$12.8MM" }
       }
     },
-    "capitalStructureNotes": {
+    {
+      "type": "capitalStructureNotes",
       "title": "Capital Structure Notes",
       "badge": "AI-Powered",
       "items": [
@@ -165,73 +83,35 @@
         "Sponsor bringing additional $2MM of preferred equity at 10% return"
       ]
     },
-    "marketOverview": {
+    {
+      "type": "capitalStructureNotes",
+      "title": "Capital Structure Notes 2",
+      "badge": "AI-Powered",
+      "items": [
+        "$500K Key Money at close",
+        "Brand Mezz terms: 12% interest, 5-year maturity, subordinate to senior loan"
+      ]
+    },
+    {
+      "type": "marketOverview",
       "title": "Market Overview",
       "subtitle": "Miami-Fort Lauderdale-West Palm Beach, FL",
       "metrics": [
-        {
-          "value": "6",
-          "label": "MSA Ranking",
-          "variant": "green"
-        },
-        {
-          "value": "645,788",
-          "label": "Population",
-          "variant": "purple"
-        },
-        {
-          "value": "2%",
-          "label": "Unemployment",
-          "variant": "gray"
-        },
-        {
-          "value": "$70,769",
-          "label": "Median Income",
-          "variant": "orange"
-        }
+        { "value": "6", "label": "MSA Ranking", "variant": "green" },
+        { "value": "645,788", "label": "Population", "variant": "blue" },
+        { "value": "2%", "label": "Unemployment", "variant": "gray" },
+        { "value": "$70,769", "label": "Median Income", "variant": "orange" }
       ]
     },
-    "competitivePositioning": {
+    {
+      "type": "competitivePositioning",
       "title": "Competitive Positioning",
-      "legend": {
-        "compSet": "Comp Set",
-        "projected": "Projected"
-      },
+      "legend": { "compSet": "Comp Set", "projected": "Projected" },
       "data": [
-        {
-          "category": "Occupancy",
-          "projected": {
-            "value": 80,
-            "label": "80%"
-          },
-          "compSet": {
-            "value": 75,
-            "label": "75%"
-          }
-        },
-        {
-          "category": "ADR",
-          "projected": {
-            "value": 130,
-            "label": "$130"
-          },
-          "compSet": {
-            "value": 120,
-            "label": "$120"
-          }
-        },
-        {
-          "category": "RevPAR",
-          "projected": {
-            "value": 100,
-            "label": "$100"
-          },
-          "compSet": {
-            "value": 90,
-            "label": "$90"
-          }
-        }
+        { "category": "Occupancy", "projected": { "value": 80, "label": "80%" }, "compSet": { "value": 75, "label": "75%" } },
+        { "category": "ADR", "projected": { "value": 130, "label": "$130" }, "compSet": { "value": 120, "label": "$120" } },
+        { "category": "RevPAR", "projected": { "value": 100, "label": "$100" }, "compSet": { "value": 90, "label": "$90" } }
       ]
     }
-  }
+  ]
 }

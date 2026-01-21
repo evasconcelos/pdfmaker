@@ -1,13 +1,14 @@
 const { colors, fonts, spacing, page, getVariantColors } = require('./styles');
 
 function render(doc, data, cursor) {
-  if (!Array.isArray(data) || data.length === 0) return cursor;
+  const cards = data.cards || data;
+  if (!Array.isArray(cards) || cards.length === 0) return cursor;
 
-  const cardWidth = (page.contentWidth - spacing.md * (data.length - 1)) / data.length;
+  const cardWidth = (page.contentWidth - spacing.md * (cards.length - 1)) / cards.length;
   const cardHeight = 80;
   const startX = cursor.x;
 
-  data.forEach((card, index) => {
+  cards.forEach((card, index) => {
     const cardX = startX + (cardWidth + spacing.md) * index;
     const variant = getVariantColors(card.variant || 'gray');
 

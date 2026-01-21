@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const PDFDocument = require('pdfkit');
 const components = require('./components');
-const { page, spacing } = require('./components/styles');
+const { page } = require('./components/styles');
 
 function generatePDF(inputPath) {
   // Resolve input path
@@ -58,38 +58,19 @@ function generatePDF(inputPath) {
     y: page.margin,
   };
 
-  // Render order - defines the sequence components are rendered
-  const renderOrder = [
-    'pageHeader',
-    'propertyHeader',
-    'financialCards',
-    'stabilizedMetrics',
-    'executiveSummary',
-    'capitalTables',
-    'capitalStructureNotes',
-    'marketOverview',
-    'competitivePositioning',
-  ];
+  // Render each component in array order
+  if (data.components && Array.isArray(data.components)) {
+    for (const componentData of data.components) {
+      const component = components[componentData.type];
 
-  // Render each component
-  if (data.components) {
-    for (const componentName of renderOrder) {
-      const componentData = data.components[componentName];
-      const component = components[componentName];
-
-      if (componentData && component) {
-        // Support arrays for repeating components
-        const items = Array.isArray(componentData) ? componentData : [componentData];
-
-        for (const itemData of items) {
-          // Check if we need a new page
-          if (cursor.y > page.height - 150) {
-            doc.addPage();
-            cursor.y = page.margin;
-          }
-
-          cursor = component.render(doc, itemData, cursor);
+      if (component) {
+        // Check if we need a new page
+        if (cursor.y > page.height - 150) {
+          doc.addPage();
+          cursor.y = page.margin;
         }
+
+        cursor = component.render(doc, componentData, cursor);
       }
     }
   }
